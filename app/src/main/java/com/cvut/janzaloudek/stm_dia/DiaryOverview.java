@@ -1,5 +1,6 @@
 package com.cvut.janzaloudek.stm_dia;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -15,6 +16,26 @@ import android.view.MenuItem;
 
 public class DiaryOverview extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
+    public void showLoginActivity(View view) {
+        Intent intent = new Intent(this, LoginActivity.class);
+        startActivity(intent);
+    }
+
+    public void showFieldSelectionActivity(View view) {
+        Intent intent = new Intent(this, FieldSelectionActivity.class);
+        startActivity(intent);
+    }
+
+    public void showSurveyDetailActivity(View view) {
+        Intent intent = new Intent(this, SurveyDetailActivity.class);
+        startActivity(intent);
+    }
+
+    public void showSurveyFormActivity(View view) {
+        Intent intent = new Intent(this, SurveyFormActivity.class);
+        startActivity(intent);
+    }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -39,8 +60,6 @@ public class DiaryOverview extends AppCompatActivity
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
-
-        
     }
 
     @Override

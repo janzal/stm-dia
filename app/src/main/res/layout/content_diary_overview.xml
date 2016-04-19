@@ -18,7 +18,8 @@
         android:text="Login"
         android:id="@+id/button"
         android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true" />
+        android:layout_centerHorizontal="true"
+        android:onClick="showLoginActivity" />
 
     <Button
         android:layout_width="wrap_content"
@@ -26,7 +27,8 @@
         android:text="Field selection"
         android:id="@+id/button2"
         android:layout_below="@+id/button"
-        android:layout_centerHorizontal="true" />
+        android:layout_centerHorizontal="true"
+        android:onClick="showFieldSelectionActivity"/>
 
     <Button
         android:layout_width="wrap_content"
@@ -34,7 +36,8 @@
         android:text="Survey detail"
         android:id="@+id/button3"
         android:layout_below="@+id/button2"
-        android:layout_centerHorizontal="true" />
+        android:layout_centerHorizontal="true"
+        android:onClick="showSurveyDetailActivity" />
 
     <Button
         android:layout_width="wrap_content"
@@ -42,5 +45,6 @@
         android:text="Survey form"
         android:id="@+id/button4"
         android:layout_below="@+id/button3"
-        android:layout_centerHorizontal="true" />
+        android:layout_centerHorizontal="true"
+        android:onClick="showSurveyFormActivity"/>
 </RelativeLayout>
