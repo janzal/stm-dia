@@ -15,7 +15,6 @@ import android.view.MenuItem;
 
 public class DiaryOverview extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -40,6 +39,8 @@ public class DiaryOverview extends AppCompatActivity
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
+
+        
     }
 
     @Override
