@@ -39,8 +39,13 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.cvut.janzaloudek.stm_dia.DiaryOverview" />
         </activity>
-        <activity android:name=".FieldSelectionActivity" />
-        <activity android:name=".SurveyFormActivity"></activity>
+        <activity
+            android:name=".FieldSelectionActivity"
+            android:label="@string/field_selection" />
+        <activity
+            android:name=".SurveyFormActivity"
+            android:label="@string/survey_form" />
+        <activity android:name=".FieldSelection.FieldsListviewItem" />
     </application>
 
 </manifest>
