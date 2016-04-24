@@ -65,7 +65,7 @@ public class SettingsActivity extends AppCompatPreferenceActivity {
             if (key.equals("switch_all_notif")) {
                 boolean switched = ((SwitchPreference) findPreference(key))
                         .isChecked();
-                Preference pref = findPreference(key);
+
                 Preference prefTime = findPreference("timePref");
                 Preference prefMailNotification = findPreference("switch_mail_notif");
 

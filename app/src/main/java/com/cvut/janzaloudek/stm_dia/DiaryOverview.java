@@ -4,6 +4,10 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
+import android.support.v4.view.GestureDetectorCompat;
+import android.util.Log;
+import android.view.GestureDetector;
+import android.view.MotionEvent;
 import android.view.View;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -13,9 +17,11 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.Toast;
 
 public class DiaryOverview extends AppCompatActivity
-        implements NavigationView.OnNavigationItemSelectedListener {
+        implements NavigationView.OnNavigationItemSelectedListener{
+
     public void showLoginActivity(View view) {
         Intent intent = new Intent(this, LoginActivity.class);
         startActivity(intent);
@@ -28,6 +34,12 @@ public class DiaryOverview extends AppCompatActivity
 
     public void showSurveyDetailActivity(View view) {
         Intent intent = new Intent(this, SurveyDetailActivity.class);
+        // Send id of current record for detail information
+        // TODO: change record_id by real id of chosen record
+        int record_id = 1;
+        Bundle b = new Bundle();
+        b.putInt("rec_id", record_id); //Your id
+        intent.putExtras(b); //Put your id to your next Intent
         startActivity(intent);
     }
 
@@ -122,6 +134,12 @@ public class DiaryOverview extends AppCompatActivity
 
         if (id == R.id.nav_manage) {
             Intent intent = new Intent(this, SettingsActivity.class);
+            startActivity(intent);
+            return true;
+        }
+
+        if (id == R.id.nav_logout) {
+            Intent intent = new Intent(this, LoginActivity.class);
             startActivity(intent);
             return true;
         }

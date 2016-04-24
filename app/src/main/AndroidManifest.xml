@@ -31,21 +31,13 @@
             android:name=".SettingsActivity"
             android:label="@string/title_activity_settings" />
         <activity
-            android:name=".SurveyDetailActivity"
-            android:label="@string/title_activity_survey_detail"
-            android:parentActivityName=".DiaryOverview"
-            android:theme="@style/AppTheme.NoActionBar">
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.cvut.janzaloudek.stm_dia.DiaryOverview" />
-        </activity>
-        <activity
             android:name=".FieldSelectionActivity"
             android:label="@string/field_selection" />
         <activity
             android:name=".SurveyFormActivity"
             android:label="@string/survey_form" />
         <activity android:name=".FieldSelection.FieldsListviewItem" />
+        <activity android:name=".SurveyDetailActivity"></activity>
     </application>
 
 </manifest>

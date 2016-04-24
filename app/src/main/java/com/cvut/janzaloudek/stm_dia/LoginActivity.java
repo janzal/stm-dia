@@ -307,6 +307,7 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
         @Override
         protected Boolean doInBackground(Void... params) {
             // TODO: attempt authentication against a network service.
+            // Here will be implemented query to the server
 
             try {
                 // Simulate network access.

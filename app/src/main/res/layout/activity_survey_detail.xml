@@ -1,13 +1,225 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:paddingBottom="@dimen/activity_vertical_margin"
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    android:paddingBottom="@dimen/activity_vertical_margin"
     tools:context="com.cvut.janzaloudek.stm_dia.SurveyDetailActivity">
+
+
+    <TextView
+        android:text="Téma: Benzínka"
+        android:id="@+id/textTheme"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentStart="true"
+        android:textSize="20sp"
+        android:layout_marginBottom="30dp"
+        android:layout_marginTop="15dp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Datum: 22.4.2016"
+        android:id="@+id/textDate"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"
+        android:textSize="20sp"
+        android:layout_marginBottom="30dp"
+        android:layout_marginTop="15dp" />
+
+    <TableLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/textTheme"
+        android:layout_alignParentStart="true"
+        android:layout_marginTop="20dp">
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Jak jste byl spokojený s nákupem na této benzince?"
+                android:id="@+id/textQ1"
+                android:layout_column="0"
+                android:textSize="16dp"
+                android:textStyle="bold"
+                android:layout_marginTop="@dimen/detail_question_top"
+                android:layout_marginLeft="@dimen/detail_question_left" />
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:text="Spíše spokojený"
+                android:id="@+id/textA1"
+                android:layout_column="0"
+                android:layout_marginTop="@dimen/detail_ans_top"
+                android:layout_marginRight="@dimen/detail_ans_right"
+                android:textStyle="italic"
+                android:textColor="#960c0c"
+                android:textAlignment="textEnd" />
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"></TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:text="Jak jste byl spokojený s kvalitou benzinu?"
+                android:id="@+id/textQ2"
+                android:layout_column="0"
+                android:textSize="16dp"
+                android:textStyle="bold"
+                android:layout_width="wrap_content"
+                android:layout_marginTop="@dimen/detail_question_top"
+                android:layout_marginLeft="@dimen/detail_question_left" />
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"></TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:text="Spokojený"
+                android:id="@+id/textA2"
+                android:layout_column="0"
+                android:layout_marginTop="@dimen/detail_ans_top"
+                android:layout_marginRight="@dimen/detail_ans_right"
+                android:textStyle="italic"
+                android:textColor="#960c0c"
+                android:textAlignment="textEnd" />
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"></TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:text="Jak jste byl spokojený s personálem?"
+                android:id="@+id/textQ3"
+                android:layout_column="0"
+                android:textSize="16dp"
+                android:textStyle="bold"
+                android:layout_marginTop="@dimen/detail_question_top"
+                android:layout_marginLeft="@dimen/detail_question_left" />
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"></TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:text="Velmi spokojený"
+                android:id="@+id/textA3"
+                android:layout_column="0"
+                android:textStyle="italic"
+                android:textColor="#960c0c"
+                android:textAlignment="textEnd"
+                android:layout_marginTop="@dimen/detail_ans_top"
+                android:layout_marginRight="@dimen/detail_ans_right" />
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"></TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:text="Doporučil byste tuto benzínku svým kamarádům/kolegům?"
+                android:id="@+id/textQ4"
+                android:layout_column="0"
+                android:textSize="16dp"
+                android:textStyle="bold"
+                android:layout_marginTop="@dimen/detail_question_top"
+                android:layout_marginLeft="@dimen/detail_question_left"
+                android:layout_width="wrap_content" />
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"></TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:text="Ano"
+                android:id="@+id/textA4"
+                android:layout_column="0"
+                android:textStyle="italic"
+                android:textColor="#960c0c"
+                android:layout_marginTop="@dimen/detail_ans_top"
+                android:layout_marginRight="@dimen/detail_ans_right"
+                android:textAlignment="textEnd" />
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"></TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:text="Ohodnoťte Vaši celkovou spokojenost s touto benzínkou (1 až 10)"
+                android:id="@+id/textQ5"
+                android:layout_column="0"
+                android:textSize="16dp"
+                android:textStyle="bold"
+                android:layout_marginTop="@dimen/detail_question_top"
+                android:layout_marginLeft="@dimen/detail_question_left"
+                android:layout_width="wrap_content" />
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"></TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:text="8"
+                android:id="@+id/textA5"
+                android:layout_column="0"
+                android:layout_marginTop="@dimen/detail_ans_top"
+                android:layout_marginRight="@dimen/detail_ans_right"
+                android:textStyle="italic"
+                android:textColor="#960c0c"
+                android:textAlignment="textEnd"/>
+        </TableRow>
+    </TableLayout>
 
 </RelativeLayout>
