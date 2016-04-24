@@ -1,9 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
-<TextView xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/label"
-    android:layout_width="fill_parent"
-    android:layout_height="fill_parent"
-    android:padding="10dip"
-    android:textSize="16dip"
-    android:textStyle="bold" >
-</TextView>
+<RelativeLayout android:layout_width="fill_parent"
+    android:layout_height="88dp"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:padding="16dp">
+
+    <TextView
+        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:id="@+id/field_title"
+        android:textSize="16sp"
+        android:textColor="@android:color/primary_text_light"
+        android:text="Titulek" />
+
+    <TextView
+        android:layout_height="wrap_content"
+        android:layout_width="wrap_content"
+        android:id="@+id/field_content"
+        android:textSize="14sp"
+        android:layout_below="@id/field_title"
+        android:textColor="@android:color/secondary_text_light"
+        android:text="Content content contentContent content contentContent content content" />
+</RelativeLayout>

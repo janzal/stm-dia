@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout android:layout_width="fill_parent"
+    android:layout_height="100dp"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:padding="16dp"
+    android:id="@+id/addi">
+
+    <TextView
+        android:layout_height="wrap_content"
+        android:layout_width="wrap_content"
+        android:id="@+id/question_text"
+        android:textSize="14sp"
+        android:textColor="@android:color/secondary_text_light"
+        android:text="Content content contentContent content contentContent content content" />
+
+    <SeekBar
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/question_response"
+        android:layout_below="@+id/question_text"
+        android:layout_centerHorizontal="true"
+        android:paddingTop="16dp"
+        android:scrollIndicators="bottom|top"
+        android:max="10"
+        android:progress="5" />
+</RelativeLayout>
