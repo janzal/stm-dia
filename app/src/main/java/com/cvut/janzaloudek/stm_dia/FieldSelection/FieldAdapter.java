@@ -29,13 +29,12 @@ public class FieldAdapter extends ArrayAdapter<Field> {
             convertView = LayoutInflater.from(getContext()).inflate(R.layout.activity_fields_listview_item, parent, false);
         }
 
-//        // Lookup view for data population
-//        TextView tvName = (TextView) convertView.findViewById(R.id.tvName);
-//        TextView tvHome = (TextView) convertView.findViewById(R.id.tvHome);
-//        // Populate the data into the template view using the data object
-//        tvName.setText(user.name);
-//        tvHome.setText(user.hometown);
-//        // Return the completed view to render on screen
+        TextView header = (TextView) convertView.findViewById(R.id.field_title);
+        TextView content = (TextView) convertView.findViewById(R.id.field_content);
+
+        header.setText(field.getHeader());
+        content.setText(field.getContent());
+
         return convertView;
     }
 }
