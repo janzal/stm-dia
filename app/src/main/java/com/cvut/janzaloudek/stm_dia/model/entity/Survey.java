@@ -7,6 +7,7 @@ import java.util.List;
  */
 public class Survey {
     List<Question> questions;
+    public Field field;
 
     public Survey(List<Question> questions) {
         this.questions = questions;

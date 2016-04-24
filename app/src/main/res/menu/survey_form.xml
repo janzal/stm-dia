@@ -4,7 +4,8 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context="com.cvut.janzaloudek.stm_dia.SurveyFormActivity">
     <item
-        android:id="@+id/action_favorite"
+        android:id="@+id/action_save_survey"
         android:title="@string/action_save_survey"
-        app:showAsAction="ifRoom"/>
+        android:onClick="handleSaveSurvey"
+        app:showAsAction="always"/>
 </menu>
