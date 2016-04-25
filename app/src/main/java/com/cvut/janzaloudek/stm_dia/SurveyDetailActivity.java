@@ -23,7 +23,9 @@ public class SurveyDetailActivity extends AppCompatActivity {
 
     private void fillData(int rec_id) {
         // TODO: here we will get records from db and place it on activity, on
+        for (int i = 0; i < record_id; i++) {
 
+        }
     }
 
     private void setupActionBar() {
