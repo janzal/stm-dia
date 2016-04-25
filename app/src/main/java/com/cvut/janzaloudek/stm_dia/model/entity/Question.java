@@ -34,4 +34,9 @@ public class Question {
     public String getContent() {
         return content;
     }
+
+    @Override
+    public boolean equals(Object o) {
+        return ((Question)o).id == id;
+    }
 }
