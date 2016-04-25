@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout android:layout_width="fill_parent"
+    android:layout_height="100dp"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:padding="16dp"
+    android:id="@+id/addi">
+
+
+    <RelativeLayout
+        android:orientation="vertical"
+        android:layout_width="100dp"
+        android:layout_height="match_parent"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="false"
+        android:layout_marginEnd="230dp"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:background="@color/material_grey_300">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:text="13"
+            android:id="@+id/overview_survey_day"
+            android:layout_alignParentLeft="false"
+            android:layout_marginLeft="0dp"
+            android:layout_alignParentTop="false"
+            android:layout_marginTop="0dp"
+            android:layout_alignParentBottom="false"
+            android:layout_alignParentRight="false"
+            android:layout_alignWithParentIfMissing="false"
+            android:layout_centerInParent="true"
+            android:autoText="false"
+            android:textAlignment="center"
+            android:textStyle="bold" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            android:text="duben"
+            android:id="@+id/overview_survey_month"
+            android:layout_marginLeft="0dp"
+            android:layout_alignWithParentIfMissing="false"
+            android:autoText="false"
+            android:textAlignment="center"
+            android:layout_centerHorizontal="true"
+            android:layout_below="@+id/overview_survey_day" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            android:text="pondělí"
+            android:id="@+id/overview_survey_day_name"
+            android:layout_marginLeft="0dp"
+            android:layout_alignWithParentIfMissing="false"
+            android:autoText="false"
+            android:textAlignment="center"
+            android:layout_above="@+id/overview_survey_day"
+            android:layout_centerHorizontal="true" />
+    </RelativeLayout>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="Benzínka"
+        android:id="@+id/overview_survey_name"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginStart="105dp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:text="Smichov, Praha 5"
+        android:id="@+id/overview_survey_location"
+        android:layout_centerVertical="true"
+        android:layout_alignStart="@+id/overview_survey_name" />
+</RelativeLayout>

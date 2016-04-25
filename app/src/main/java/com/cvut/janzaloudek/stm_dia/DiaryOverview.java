@@ -17,10 +17,34 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.widget.Toast;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
+import android.widget.ListView;
+
+import com.cvut.janzaloudek.stm_dia.FieldSelection.FieldAdapter;
+import com.cvut.janzaloudek.stm_dia.Survey.SurveyResponseOverviewAdapter;
+import com.cvut.janzaloudek.stm_dia.model.entity.Field;
+import com.cvut.janzaloudek.stm_dia.model.entity.Survey;
+import com.cvut.janzaloudek.stm_dia.model.entity.SurveyResponse;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class DiaryOverview extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener{
+
+    List<SurveyResponse> surveyResponses = new ArrayList<SurveyResponse>() {{
+        add(new SurveyResponse());
+        add(new SurveyResponse());
+        add(new SurveyResponse());
+        add(new SurveyResponse());
+        add(new SurveyResponse());
+        add(new SurveyResponse());
+        add(new SurveyResponse());
+        add(new SurveyResponse());
+        add(new SurveyResponse());
+
+    }};
 
     public void showLoginActivity(View view) {
         Intent intent = new Intent(this, LoginActivity.class);
@@ -72,6 +96,19 @@ public class DiaryOverview extends AppCompatActivity
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
+
+        ArrayAdapter adapter = new SurveyResponseOverviewAdapter(this, R.layout.overview_question_item, surveyResponses);
+
+        ListView listView = (ListView) findViewById(R.id.overview_listview);
+        listView.setAdapter(adapter);
+
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                Intent intent = new Intent(DiaryOverview.this, SurveyDetailActivity.class);
+                startActivity(intent);
+            }
+        });
     }
 
     @Override
