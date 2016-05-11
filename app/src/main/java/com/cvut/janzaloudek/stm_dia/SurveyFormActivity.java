@@ -1,6 +1,13 @@
 package com.cvut.janzaloudek.stm_dia;
 
+import android.Manifest;
+import android.content.Context;
 import android.content.Intent;
+import android.content.pm.PackageManager;
+import android.location.Criteria;
+import android.location.Location;
+import android.location.LocationManager;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Menu;
@@ -25,9 +32,11 @@ public class SurveyFormActivity extends AppCompatActivity {
         add(new Question(4, "Jelita byla zalita kremovou omackou?"));
         add(new Question(5, "Kvalita obsluhy na stupnici 1-10?"));
         add(new Question(6, "Veprove koleno na smetane bylo uchazejici. Toto tvrzeni ohodnotte."));
-//        add(new Question(7, "Jelita byla zalita kremovou omackou?"));
-//        add(new Question(8, "Jelita byla zalita kremovou omackou?"));
+        add(new Question(7, "Jelita byla zalita kremovou omackou?"));
+        add(new Question(8, "Jelita byla zalita kremovou omackou?"));
     }};
+
+    Location responseLocation;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,6 +54,16 @@ public class SurveyFormActivity extends AppCompatActivity {
 //                startActivity(intent);
 //            }
 //        });
+
+        LocationManager locationManager = (LocationManager)getSystemService(Context.LOCATION_SERVICE);
+        Criteria criteria = new Criteria();
+        criteria.setAccuracy(Criteria.ACCURACY_FINE);
+        criteria.setAltitudeRequired(false);
+        criteria.setSpeedRequired(false);
+
+        if (ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED) {
+            responseLocation = locationManager.getLastKnownLocation(locationManager.getBestProvider(criteria, true));
+        }
     }
 
     @Override

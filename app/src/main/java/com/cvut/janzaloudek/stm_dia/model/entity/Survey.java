@@ -6,18 +6,22 @@ import java.util.List;
  * Created by janzaloudek on 24/04/16.
  */
 public class Survey {
-    List<Question> questions;
-    public Field field;
+    public List<Question> questions;
+    public String title;
+    public String description;
 
-    public Survey(List<Question> questions) {
-        this.questions = questions;
+    public Survey() {
     }
 
     public List<Question> getQuestions() {
         return questions;
     }
 
-    public void setQuestions(List<Question> questions) {
-        this.questions = questions;
+    public String getTitle() {
+        return title;
+    }
+
+    public String getDescription() {
+        return description;
     }
 }

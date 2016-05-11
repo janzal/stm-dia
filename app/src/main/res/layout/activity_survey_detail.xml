@@ -51,8 +51,8 @@
                 android:layout_column="0"
                 android:textSize="16dp"
                 android:textStyle="bold"
-                android:layout_marginTop="@dimen/detail_question_top"
-                android:layout_marginLeft="@dimen/detail_question_left" />
+                android:layout_marginTop="20dp"
+                android:layout_marginLeft="5dp" />
         </TableRow>
 
         <TableRow
@@ -63,8 +63,8 @@
                 android:text="Spíše spokojený"
                 android:id="@+id/textA1"
                 android:layout_column="0"
-                android:layout_marginTop="@dimen/detail_ans_top"
-                android:layout_marginRight="@dimen/detail_ans_right"
+                android:layout_marginTop="5dp"
+                android:layout_marginRight="20dp"
                 android:textStyle="italic"
                 android:textColor="#960c0c"
                 android:textAlignment="textEnd" />
@@ -85,8 +85,8 @@
                 android:textSize="16dp"
                 android:textStyle="bold"
                 android:layout_width="wrap_content"
-                android:layout_marginTop="@dimen/detail_question_top"
-                android:layout_marginLeft="@dimen/detail_question_left" />
+                android:layout_marginTop="20dp"
+                android:layout_marginLeft="5dp" />
         </TableRow>
 
         <TableRow
@@ -101,8 +101,8 @@
                 android:text="Spokojený"
                 android:id="@+id/textA2"
                 android:layout_column="0"
-                android:layout_marginTop="@dimen/detail_ans_top"
-                android:layout_marginRight="@dimen/detail_ans_right"
+                android:layout_marginTop="5dp"
+                android:layout_marginRight="20dp"
                 android:textStyle="italic"
                 android:textColor="#960c0c"
                 android:textAlignment="textEnd" />
@@ -118,8 +118,8 @@
                 android:layout_column="0"
                 android:textSize="16dp"
                 android:textStyle="bold"
-                android:layout_marginTop="@dimen/detail_question_top"
-                android:layout_marginLeft="@dimen/detail_question_left" />
+                android:layout_marginTop="20dp"
+                android:layout_marginLeft="5dp" />
         </TableRow>
 
         <TableRow
@@ -137,8 +137,8 @@
                 android:textStyle="italic"
                 android:textColor="#960c0c"
                 android:textAlignment="textEnd"
-                android:layout_marginTop="@dimen/detail_ans_top"
-                android:layout_marginRight="@dimen/detail_ans_right" />
+                android:layout_marginTop="5dp"
+                android:layout_marginRight="20dp" />
         </TableRow>
 
         <TableRow
@@ -155,8 +155,8 @@
                 android:layout_column="0"
                 android:textSize="16dp"
                 android:textStyle="bold"
-                android:layout_marginTop="@dimen/detail_question_top"
-                android:layout_marginLeft="@dimen/detail_question_left"
+                android:layout_marginTop="20dp"
+                android:layout_marginLeft="5dp"
                 android:layout_width="wrap_content" />
         </TableRow>
 
@@ -174,8 +174,8 @@
                 android:layout_column="0"
                 android:textStyle="italic"
                 android:textColor="#960c0c"
-                android:layout_marginTop="@dimen/detail_ans_top"
-                android:layout_marginRight="@dimen/detail_ans_right"
+                android:layout_marginTop="5dp"
+                android:layout_marginRight="20dp"
                 android:textAlignment="textEnd" />
         </TableRow>
 
@@ -193,8 +193,8 @@
                 android:layout_column="0"
                 android:textSize="16dp"
                 android:textStyle="bold"
-                android:layout_marginTop="@dimen/detail_question_top"
-                android:layout_marginLeft="@dimen/detail_question_left"
+                android:layout_marginTop="20dp"
+                android:layout_marginLeft="5dp"
                 android:layout_width="wrap_content" />
         </TableRow>
 
@@ -210,8 +210,8 @@
                 android:text="8"
                 android:id="@+id/textA5"
                 android:layout_column="0"
-                android:layout_marginTop="@dimen/detail_ans_top"
-                android:layout_marginRight="@dimen/detail_ans_right"
+                android:layout_marginTop="5dp"
+                android:layout_marginRight="20dp"
                 android:textStyle="italic"
                 android:textColor="#960c0c"
                 android:textAlignment="textEnd"/>

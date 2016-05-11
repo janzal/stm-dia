@@ -102,20 +102,17 @@ public class DiaryOverview extends AppCompatActivity
         ListView listView = (ListView) findViewById(R.id.overview_listview);
         listView.setAdapter(adapter);
 
-        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-//                Intent intent = new Intent(DiaryOverview.this, SurveyDetailActivity.class);
+        listView.setOnItemClickListener((AdapterView<?> adapterView, View view, int i, long l) -> {
+            //                Intent intent = new Intent(DiaryOverview.this, SurveyDetailActivity.class);
 //                startActivity(intent);
-                Intent intent = new Intent(DiaryOverview.this, SurveyDetailActivity.class);
-                // Send id of current record for detail information
-                // TODO: change record_id by real id of chosen record
-                int record_id = 1;
-                Bundle b = new Bundle();
-                b.putInt("rec_id", record_id); //Your id
-                intent.putExtras(b); //Put your id to your next Intent
-                startActivity(intent);
-            }
+            Intent intent = new Intent(DiaryOverview.this, SurveyDetailActivity.class);
+            // Send id of current record for detail information
+            // TODO: change record_id by real id of chosen record
+            int record_id = 1;
+            Bundle b = new Bundle();
+            b.putInt("rec_id", record_id); //Your id
+            intent.putExtras(b); //Put your id to your next Intent
+            startActivity(intent);
         });
     }
 
