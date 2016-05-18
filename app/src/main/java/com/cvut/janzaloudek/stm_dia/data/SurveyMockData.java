@@ -2,7 +2,6 @@ package com.cvut.janzaloudek.stm_dia.data;
 
 import com.cvut.janzaloudek.stm_dia.model.entity.Field;
 import com.cvut.janzaloudek.stm_dia.model.entity.Question;
-import com.cvut.janzaloudek.stm_dia.model.entity.Survey;
 import com.cvut.janzaloudek.stm_dia.model.entity.SurveyResponse;
 
 import java.util.ArrayList;
@@ -47,8 +46,8 @@ public class SurveyMockData {
         return ourInstance;
     }
 
-//    protected List surveys = new ArrayList<Survey>() {{
-//        add(new Survey(
+//    protected List surveys = new ArrayList<SurveyItem>() {{
+//        add(new SurveyItem(
 //                new ArrayList<Question>(){{
 //                    add(new Question(1, "Hello"));
 //                    add(new Question(1, "Hello2"));

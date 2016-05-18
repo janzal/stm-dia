@@ -2,12 +2,6 @@ package com.cvut.janzaloudek.stm_dia;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
-import android.support.v4.view.GestureDetectorCompat;
-import android.util.Log;
-import android.view.GestureDetector;
-import android.view.MotionEvent;
 import android.view.View;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -23,28 +17,23 @@ import android.widget.ListView;
 
 import com.cvut.janzaloudek.stm_dia.FieldSelection.FieldAdapter;
 import com.cvut.janzaloudek.stm_dia.Survey.SurveyResponseOverviewAdapter;
-import com.cvut.janzaloudek.stm_dia.model.entity.Field;
-import com.cvut.janzaloudek.stm_dia.model.entity.Survey;
+import com.cvut.janzaloudek.stm_dia.model.entity.SurveyItem;
 import com.cvut.janzaloudek.stm_dia.model.entity.SurveyResponse;
+import com.firebase.client.AuthData;
+import com.firebase.client.DataSnapshot;
+import com.firebase.client.Firebase;
+import com.firebase.client.FirebaseError;
+import com.firebase.client.ValueEventListener;
 
 import java.util.ArrayList;
+import java.util.LinkedHashMap;
 import java.util.List;
+import java.util.Map;
 
 public class DiaryOverview extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener{
 
-    List<SurveyResponse> surveyResponses = new ArrayList<SurveyResponse>() {{
-        add(new SurveyResponse());
-        add(new SurveyResponse());
-        add(new SurveyResponse());
-        add(new SurveyResponse());
-        add(new SurveyResponse());
-        add(new SurveyResponse());
-        add(new SurveyResponse());
-        add(new SurveyResponse());
-        add(new SurveyResponse());
-
-    }};
+    Map<String, SurveyResponse> surveyResponses = new LinkedHashMap<String, SurveyResponse>();
 
     public void showLoginActivity(View view) {
         Intent intent = new Intent(this, LoginActivity.class);
@@ -75,6 +64,17 @@ public class DiaryOverview extends AppCompatActivity
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        Firebase ref = new Firebase(Config.FIREBASE_URL);
+        AuthData authData = ref.getAuth();
+
+        if (authData == null) {
+            Intent intent = new Intent(this, LoginActivity.class);
+            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+            startActivity(intent);
+            return;
+        }
+
         setContentView(R.layout.activity_diary_overview);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -97,22 +97,41 @@ public class DiaryOverview extends AppCompatActivity
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
 
-        ArrayAdapter adapter = new SurveyResponseOverviewAdapter(this, R.layout.overview_question_item, surveyResponses);
+        loadData();
+    }
 
-        ListView listView = (ListView) findViewById(R.id.overview_listview);
-        listView.setAdapter(adapter);
+    private void loadData() {
+        Firebase ref = new Firebase(Config.FIREBASE_RESPONSES_URL).child("janzal");
+        ref.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot snapshot) {
+                for (DataSnapshot s : snapshot.getChildren()) {
+                    surveyResponses.put(s.getKey(), s.getValue(SurveyResponse.class));
+                }
 
-        listView.setOnItemClickListener((AdapterView<?> adapterView, View view, int i, long l) -> {
-            //                Intent intent = new Intent(DiaryOverview.this, SurveyDetailActivity.class);
+                SurveyResponseOverviewAdapter adapter = new SurveyResponseOverviewAdapter(surveyResponses);
+
+                ListView listView = (ListView) findViewById(R.id.overview_listview);
+                listView.setAdapter(adapter);
+
+                listView.setOnItemClickListener((AdapterView<?> adapterView, View view, int i, long l) -> {
+                    //                Intent intent = new Intent(DiaryOverview.this, SurveyDetailActivity.class);
 //                startActivity(intent);
-            Intent intent = new Intent(DiaryOverview.this, SurveyDetailActivity.class);
-            // Send id of current record for detail information
-            // TODO: change record_id by real id of chosen record
-            int record_id = 1;
-            Bundle b = new Bundle();
-            b.putInt("rec_id", record_id); //Your id
-            intent.putExtras(b); //Put your id to your next Intent
-            startActivity(intent);
+                    Intent intent = new Intent(DiaryOverview.this, SurveyDetailActivity.class);
+                    // Send id of current record for detail information
+                    // TODO: change record_id by real id of chosen record
+                    int record_id = 1;
+                    Bundle b = new Bundle();
+                    b.putInt("rec_id", record_id); //Your id
+                    intent.putExtras(b); //Put your id to your next Intent
+                    startActivity(intent);
+                });
+            }
+
+            @Override
+            public void onCancelled(FirebaseError firebaseError) {
+
+            }
         });
     }
 
@@ -181,7 +200,9 @@ public class DiaryOverview extends AppCompatActivity
         }
 
         if (id == R.id.nav_logout) {
+            logout();
             Intent intent = new Intent(this, LoginActivity.class);
+            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
             startActivity(intent);
             return true;
         }
@@ -189,5 +210,10 @@ public class DiaryOverview extends AppCompatActivity
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;
+    }
+
+    private void logout() {
+        Firebase ref = new Firebase(Config.FIREBASE_URL);
+        ref.unauth();
     }
 }
