@@ -8,37 +8,29 @@ import android.location.Criteria;
 import android.location.Location;
 import android.location.LocationManager;
 import android.os.AsyncTask;
-import android.support.design.widget.Snackbar;
+import android.os.Bundle;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.SeekBar;
 
-import com.cvut.janzaloudek.stm_dia.FieldSelection.FieldAdapter;
 import com.cvut.janzaloudek.stm_dia.Survey.QuestionAdapter;
-import com.cvut.janzaloudek.stm_dia.model.entity.Question;
-import com.cvut.janzaloudek.stm_dia.model.entity.SurveyItem;
 import com.cvut.janzaloudek.stm_dia.model.entity.SurveyResponse;
-import com.firebase.client.AuthData;
-import com.firebase.client.DataSnapshot;
-import com.firebase.client.Firebase;
-import com.firebase.client.FirebaseError;
-import com.firebase.client.ValueEventListener;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
-import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
 import java.util.Date;
-import java.util.HashMap;
 import java.util.LinkedHashMap;
-import java.util.List;
 import java.util.Map;
 
 public class SurveyFormActivity extends AppCompatActivity {
@@ -50,8 +42,8 @@ public class SurveyFormActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        Firebase ref = new Firebase(Config.FIREBASE_URL);
-        AuthData authData = ref.getAuth();
+        FirebaseAuth ref = FirebaseAuth.getInstance();
+        FirebaseUser authData = ref.getCurrentUser();
 
         if (authData == null) {
             Intent intent = new Intent(this, LoginActivity.class);
@@ -81,7 +73,8 @@ public class SurveyFormActivity extends AppCompatActivity {
     }
 
     private void loadData() {
-        Firebase ref = new Firebase(Config.FIREBASE_SURVEYS_URL + "/" + mField + "/questions");
+        DatabaseReference ref = FirebaseDatabase.getInstance().getReferenceFromUrl(Config.FIREBASE_SURVEYS_URL);
+        ref = ref.child(mField).child("questions");
 
         ref.addValueEventListener(new ValueEventListener() {
             @Override
@@ -97,7 +90,7 @@ public class SurveyFormActivity extends AppCompatActivity {
             }
 
             @Override
-            public void onCancelled(FirebaseError firebaseError) {
+            public void onCancelled(DatabaseError databaseError) {
 
             }
         });
@@ -147,8 +140,11 @@ public class SurveyFormActivity extends AppCompatActivity {
 
         @Override
         protected String doInBackground(SurveyResponse... surveys) {
-            Firebase ref = new Firebase(Config.FIREBASE_RESPONSES_URL);
-            Firebase userRef = ref.child("janzal");
+            DatabaseReference ref = FirebaseDatabase.getInstance().getReferenceFromUrl(Config.FIREBASE_RESPONSES_URL);
+            FirebaseAuth authRef = FirebaseAuth.getInstance();
+            FirebaseUser user = authRef.getCurrentUser();
+
+            DatabaseReference userRef = ref.child(user.getUid());
             userRef.push().setValue(surveys[0]);
             return null;
         }

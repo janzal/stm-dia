@@ -2,7 +2,6 @@ package com.cvut.janzaloudek.stm_dia;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.View;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
@@ -11,23 +10,21 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
-import com.cvut.janzaloudek.stm_dia.FieldSelection.FieldAdapter;
 import com.cvut.janzaloudek.stm_dia.Survey.SurveyResponseOverviewAdapter;
-import com.cvut.janzaloudek.stm_dia.model.entity.SurveyItem;
 import com.cvut.janzaloudek.stm_dia.model.entity.SurveyResponse;
-import com.firebase.client.AuthData;
-import com.firebase.client.DataSnapshot;
-import com.firebase.client.Firebase;
-import com.firebase.client.FirebaseError;
-import com.firebase.client.ValueEventListener;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
-import java.util.ArrayList;
 import java.util.LinkedHashMap;
-import java.util.List;
 import java.util.Map;
 
 public class DiaryOverview extends AppCompatActivity
@@ -65,8 +62,8 @@ public class DiaryOverview extends AppCompatActivity
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        Firebase ref = new Firebase(Config.FIREBASE_URL);
-        AuthData authData = ref.getAuth();
+        FirebaseAuth ref = FirebaseAuth.getInstance();
+        FirebaseUser authData = ref.getCurrentUser();
 
         if (authData == null) {
             Intent intent = new Intent(this, LoginActivity.class);
@@ -101,7 +98,9 @@ public class DiaryOverview extends AppCompatActivity
     }
 
     private void loadData() {
-        Firebase ref = new Firebase(Config.FIREBASE_RESPONSES_URL).child("janzal");
+        DatabaseReference ref = FirebaseDatabase.getInstance().getReferenceFromUrl(Config.FIREBASE_RESPONSES_URL);
+        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+        ref = ref.child(user.getUid());
         ref.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot snapshot) {
@@ -129,7 +128,7 @@ public class DiaryOverview extends AppCompatActivity
             }
 
             @Override
-            public void onCancelled(FirebaseError firebaseError) {
+            public void onCancelled(DatabaseError databaseError) {
 
             }
         });
@@ -213,7 +212,6 @@ public class DiaryOverview extends AppCompatActivity
     }
 
     private void logout() {
-        Firebase ref = new Firebase(Config.FIREBASE_URL);
-        ref.unauth();
+        FirebaseAuth.getInstance().signOut();
     }
 }

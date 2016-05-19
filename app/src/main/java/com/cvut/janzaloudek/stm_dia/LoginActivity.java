@@ -3,37 +3,33 @@ package com.cvut.janzaloudek.stm_dia;
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 import android.annotation.TargetApi;
-import android.content.Context;
-import android.content.Intent;
-import android.content.pm.PackageManager;
-import android.support.annotation.NonNull;
-import android.support.design.widget.Snackbar;
-import android.support.v7.app.AppCompatActivity;
 import android.app.LoaderManager.LoaderCallbacks;
-
+import android.content.Context;
 import android.content.CursorLoader;
+import android.content.Intent;
 import android.content.Loader;
+import android.content.pm.PackageManager;
 import android.database.Cursor;
 import android.net.Uri;
 import android.os.AsyncTask;
-
 import android.os.Build;
 import android.os.Bundle;
 import android.provider.ContactsContract;
+import android.support.annotation.NonNull;
+import android.support.design.widget.Snackbar;
+import android.support.v7.app.AppCompatActivity;
 import android.text.TextUtils;
-import android.view.KeyEvent;
 import android.view.View;
 import android.view.View.OnClickListener;
-import android.view.inputmethod.EditorInfo;
 import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.TextView;
 
-import com.firebase.client.AuthData;
-import com.firebase.client.Firebase;
-import com.firebase.client.FirebaseError;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.AuthResult;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DatabaseReference;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -301,19 +297,14 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
             final Semaphore semaphore = new Semaphore(0);
             final boolean[] success = {false};
 
-            Firebase ref = new Firebase(Config.FIREBASE_URL);
-            Firebase.AuthResultHandler authResultHandler = new Firebase.AuthResultHandler() {
-                @Override
-                public void onAuthenticated(AuthData authData) {
+            FirebaseAuth auth = FirebaseAuth.getInstance();
+            Task<AuthResult> authResultTask = auth.signInWithEmailAndPassword(mEmail, mPassword);
+            authResultTask.addOnCompleteListener((@NonNull Task<AuthResult> task) -> {
+                if (task.isSuccessful()) {
                     success[0] = true;
-                    semaphore.release();
                 }
-                @Override
-                public void onAuthenticationError(FirebaseError firebaseError) {
-                    semaphore.release();
-                }
-            };
-            ref.authWithPassword(mEmail, mPassword, authResultHandler);
+                semaphore.release();
+            });
 
             try {
                 semaphore.acquire();

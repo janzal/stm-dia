@@ -1,6 +1,6 @@
 package com.cvut.janzaloudek.stm_dia.model.entity;
 
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+//import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import java.util.HashMap;
 import java.util.List;
@@ -9,7 +9,7 @@ import java.util.Map;
 /**
  * Created by janzaloudek on 25/04/16.
  */
-@JsonIgnoreProperties(ignoreUnknown = true)
+//@JsonIgnoreProperties(ignoreUnknown = true)
 public class SurveyResponse {
     String postedAt;
     Map<String, Integer> responses;
