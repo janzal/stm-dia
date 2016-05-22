@@ -124,9 +124,11 @@ public class SurveyFormActivity extends AppCompatActivity {
         Date date = new Date();
         response.setPostedAt(dateFormat.format(date));
 
-        response.setLatitude(responseLocation.getLatitude());
-        response.setLongitude(responseLocation.getLongitude());
-        response.setAccuracy(responseLocation.getAccuracy());
+        if (responseLocation != null) {
+            response.setLatitude(responseLocation.getLatitude());
+            response.setLongitude(responseLocation.getLongitude());
+            response.setAccuracy(responseLocation.getAccuracy());
+        }
 
         Map<String, Integer> responses = new LinkedHashMap<>();
         ListView listView = (ListView) findViewById(R.id.survey_form_questions);
@@ -152,7 +154,6 @@ public class SurveyFormActivity extends AppCompatActivity {
             FirebaseUser user = authRef.getCurrentUser();
 
             DatabaseReference userRef = ref.child(user.getUid());
-            // TODO: try to find existing document in DB and replace it with new one
             userRef.push().setValue(surveys[0]);
             return null;
         }

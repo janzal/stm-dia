@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout android:layout_width="fill_parent"
-    android:layout_height="100dp"
+    android:layout_height="wrap_content"
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:padding="16dp"
     android:id="@+id/addi">
@@ -11,7 +11,8 @@
         android:id="@+id/question_text"
         android:textSize="14sp"
         android:textColor="@android:color/secondary_text_light"
-        android:text="Content content contentContent content contentContent content content" />
+        android:text="Content content contentContent content contentContent content contentContent content contentContent content contentContent content content"
+        android:textStyle="bold" />
 
     <SeekBar
         android:layout_width="match_parent"
@@ -22,5 +23,40 @@
         android:paddingTop="16dp"
         android:scrollIndicators="bottom|top"
         android:max="10"
-        android:progress="5" />
+        android:progress="5"
+        android:indeterminateOnly="false"
+        android:splitTrack="false"
+        android:focusable="true"
+        android:focusableInTouchMode="true"
+        android:nestedScrollingEnabled="true" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:text="určitě ne"
+        android:id="@+id/textView3"
+        android:layout_alignParentBottom="false"
+        android:layout_alignLeft="@+id/question_response"
+        android:layout_below="@+id/question_response" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:text="určitě ano"
+        android:id="@+id/textView4"
+        android:layout_below="@+id/question_response"
+        android:layout_alignParentRight="false"
+        android:layout_alignParentEnd="true"
+        android:layout_alignRight="@+id/question_response" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:text="možná"
+        android:id="@+id/textView5"
+        android:layout_below="@+id/question_response"
+        android:layout_centerHorizontal="true" />
 </RelativeLayout>
