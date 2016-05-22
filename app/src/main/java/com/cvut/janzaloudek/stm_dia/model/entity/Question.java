@@ -1,6 +1,8 @@
 package com.cvut.janzaloudek.stm_dia.model.entity;
 
 /**
+ * DTO
+ *
  * Created by janzaloudek on 24/04/16.
  */
 public class Question {

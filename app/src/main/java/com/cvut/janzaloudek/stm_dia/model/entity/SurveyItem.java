@@ -6,6 +6,8 @@ import java.util.List;
 import java.util.Map;
 
 /**
+ * DTO
+ *
  * Created by janzaloudek on 24/04/16.
  */
 public class SurveyItem {

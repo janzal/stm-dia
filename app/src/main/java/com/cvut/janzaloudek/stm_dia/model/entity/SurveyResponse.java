@@ -8,6 +8,8 @@ import java.util.List;
 import java.util.Map;
 
 /**
+ * DTO
+ *
  * Created by janzaloudek on 25/04/16.
  */
 //@JsonIgnoreProperties(ignoreUnknown = true)

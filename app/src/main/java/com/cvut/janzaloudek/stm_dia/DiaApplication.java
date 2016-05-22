@@ -11,6 +11,7 @@ public class DiaApplication extends Application {
     @Override
     public void onCreate() {
         super.onCreate();
+        // Setup Firebase persistence (data are stored after application is killed)
         FirebaseDatabase.getInstance().setPersistenceEnabled(true);
     }
 }

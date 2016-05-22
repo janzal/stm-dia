@@ -25,6 +25,7 @@ import java.util.Locale;
 import java.util.Map;
 
 /**
+ * SurveyResponseOverviewAdapter is used for populating home screen responses list
  * Created by janzaloudek on 25/04/16.
  */
 public class SurveyResponseOverviewAdapter extends MapAdapter<SurveyResponse> {

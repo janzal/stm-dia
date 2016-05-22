@@ -19,6 +19,8 @@ import java.util.List;
 import java.util.Map;
 
 /**
+ * Question adapter is used for populating Questions list
+ *
  * Created by janzaloudek on 23/04/16.
  */
 public class QuestionAdapter extends MapAdapter<String> {

@@ -12,6 +12,8 @@ import java.util.ArrayList;
 import java.util.Map;
 
 /**
+ * Custom implementation of BaseAdapter for displaying data from Map collections
+ *
  * Created by janzaloudek on 18/05/16.
  */
 public abstract class MapAdapter<T> extends BaseAdapter {

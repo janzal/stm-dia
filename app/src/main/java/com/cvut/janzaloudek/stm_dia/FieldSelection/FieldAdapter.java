@@ -18,6 +18,8 @@ import java.util.List;
 import java.util.Map;
 
 /**
+ * Field adapter is used for populating FieldSelection list
+ *
  * Created by janzaloudek on 23/04/16.
  */
 public class FieldAdapter extends MapAdapter<SurveyItem> {
