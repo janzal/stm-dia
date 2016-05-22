@@ -27,6 +27,7 @@ public class FieldSelectionActivity extends AppCompatActivity {
         setContentView(R.layout.activity_field_selection);
 
         DatabaseReference ref = FirebaseDatabase.getInstance().getReferenceFromUrl(Config.FIREBASE_SURVEYS_URL);
+
         ref.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot snapshot) {

@@ -2,6 +2,7 @@ package com.cvut.janzaloudek.stm_dia.model.entity;
 
 //import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
+import java.io.Serializable;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -10,7 +11,7 @@ import java.util.Map;
  * Created by janzaloudek on 25/04/16.
  */
 //@JsonIgnoreProperties(ignoreUnknown = true)
-public class SurveyResponse {
+public class SurveyResponse implements Serializable {
     String postedAt;
     Map<String, Integer> responses;
     String survey;

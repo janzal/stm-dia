@@ -12,7 +12,8 @@
         android:layout_height="match_parent"
         android:layout_alignParentTop="true"
         android:layout_alignParentEnd="false"
-        android:layout_marginEnd="230dp"
+        android:layout_alignParentRight="false"
+        android:layout_marginRight="230dp"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
         android:background="@color/material_grey_300">
@@ -70,7 +71,9 @@
         android:id="@+id/overview_survey_name"
         android:layout_alignParentTop="true"
         android:layout_alignParentStart="true"
-        android:layout_marginStart="105dp" />
+        android:layout_alignParentLeft="true"
+        android:layout_marginStart="105dp"
+        android:layout_marginLeft="105dp"/>
 
     <TextView
         android:layout_width="wrap_content"
@@ -79,5 +82,6 @@
         android:text="Smichov, Praha 5"
         android:id="@+id/overview_survey_location"
         android:layout_centerVertical="true"
-        android:layout_alignStart="@+id/overview_survey_name" />
+        android:layout_alignStart="@+id/overview_survey_name"
+        android:layout_alignLeft="@+id/overview_survey_name"/>
 </RelativeLayout>

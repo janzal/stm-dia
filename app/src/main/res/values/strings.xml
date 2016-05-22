@@ -30,7 +30,7 @@
     <!-- Example General settings -->
     <string name="pref_header_general">General</string>
 
-    <string name="pref_title_enb_notifications">Enable notifications</string>
+    <string name="pref_title_enb_notifications">Zapnout notifikace</string>
     <string name="pref_description_enb_notifications">We will notify you in case when you
         forgot complete the diary.
     </string>
@@ -40,6 +40,10 @@
 
     <string name="pref_title_display_name">Display name</string>
     <string name="pref_default_display_name">John Smith</string>
+    <string name="theme">Téma: %s</string>
+    <string name="datum">Datum: %s</string>
+    <string name="not_answered">Nevyplněno</string>
+    <string name="date_saved">Data byla úspěšně uložena</string>
 
     <string name="pref_title_add_friends_to_messages">Add friends to messages</string>
     <string-array name="pref_example_list_titles">

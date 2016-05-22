@@ -1,6 +1,9 @@
 package com.cvut.janzaloudek.stm_dia;
 
 
+import android.app.FragmentManager;
+import android.app.FragmentTransaction;
+import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -10,6 +13,7 @@ import android.preference.SwitchPreference;
 import android.support.v7.app.ActionBar;
 import android.preference.PreferenceFragment;
 import android.view.MenuItem;
+import android.widget.Toast;
 
 /**
  * A {@link PreferenceActivity} that presents a set of application settings. On
@@ -32,7 +36,9 @@ public class SettingsActivity extends AppCompatPreferenceActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setupActionBar();
+
         getFragmentManager().beginTransaction().replace(android.R.id.content, new MyPreferenceFragment()).commit();
+
     }
 
     private void setupActionBar() {
@@ -57,7 +63,22 @@ public class SettingsActivity extends AppCompatPreferenceActivity {
             super.onCreate(savedInstanceState);
             addPreferencesFromResource(R.xml.pref_general);
 
+            setPrefOnStart();
             setHasOptionsMenu(true);
+        }
+
+        public void setAdditionalPref(boolean switched) {
+            Preference prefTime = findPreference("timePref");
+            Preference prefMailNotification = findPreference("switch_mail_notif");
+
+            prefTime.setEnabled(switched);
+            prefMailNotification.setEnabled(switched);
+        }
+
+        public void setPrefOnStart() {
+            SwitchPreference switchAllPref = (SwitchPreference) findPreference("switch_all_notif");
+            boolean switched = switchAllPref.isChecked();
+            setAdditionalPref(switched);
         }
 
         @Override
@@ -66,11 +87,7 @@ public class SettingsActivity extends AppCompatPreferenceActivity {
                 boolean switched = ((SwitchPreference) findPreference(key))
                         .isChecked();
 
-                Preference prefTime = findPreference("timePref");
-                Preference prefMailNotification = findPreference("switch_mail_notif");
-
-                prefTime.setEnabled(switched);
-                prefMailNotification.setEnabled(switched);
+                setAdditionalPref(switched);
             }
         }
 //
@@ -80,6 +97,7 @@ public class SettingsActivity extends AppCompatPreferenceActivity {
             getPreferenceScreen()
                     .getSharedPreferences()
                     .registerOnSharedPreferenceChangeListener(this);
+            setPrefOnStart();
         }
 
         @Override

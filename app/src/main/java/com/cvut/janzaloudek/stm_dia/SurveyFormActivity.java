@@ -17,6 +17,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.ListView;
 import android.widget.SeekBar;
+import android.widget.Toast;
 
 import com.cvut.janzaloudek.stm_dia.Survey.QuestionAdapter;
 import com.cvut.janzaloudek.stm_dia.model.entity.SurveyResponse;
@@ -31,6 +32,7 @@ import com.google.firebase.database.ValueEventListener;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.LinkedHashMap;
+import java.util.Locale;
 import java.util.Map;
 
 public class SurveyFormActivity extends AppCompatActivity {
@@ -84,14 +86,12 @@ public class SurveyFormActivity extends AppCompatActivity {
                 }
 
                 QuestionAdapter adapter = new QuestionAdapter(mQuestions);
-
                 ListView listView = (ListView) findViewById(R.id.survey_form_questions);
                 listView.setAdapter(adapter);
             }
 
             @Override
             public void onCancelled(DatabaseError databaseError) {
-
             }
         });
     }
@@ -108,6 +108,11 @@ public class SurveyFormActivity extends AppCompatActivity {
         saveResponse();
         Intent intent = new Intent(this, DiaryOverview.class);
         startActivity(intent);
+        Context context = getApplicationContext();
+        int duration = Toast.LENGTH_LONG;
+
+        Toast toast = Toast.makeText(context, R.string.date_saved, duration);
+        toast.show();
     }
 
     private void saveResponse() {
@@ -115,7 +120,7 @@ public class SurveyFormActivity extends AppCompatActivity {
         SurveyResponse response = new SurveyResponse();
         response.setSurvey(mField);
 
-        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss'Z'");
+        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss'Z'", Locale.ENGLISH);
         Date date = new Date();
         response.setPostedAt(dateFormat.format(date));
 
@@ -123,13 +128,15 @@ public class SurveyFormActivity extends AppCompatActivity {
         response.setLongitude(responseLocation.getLongitude());
         response.setAccuracy(responseLocation.getAccuracy());
 
-        Map<String, Integer> responses = new LinkedHashMap<String, Integer>();
+        Map<String, Integer> responses = new LinkedHashMap<>();
         ListView listView = (ListView) findViewById(R.id.survey_form_questions);
-        for (int i = 0; i < listView.getChildCount(); i++) {
-            QuestionAdapter adapter = (QuestionAdapter) listView.getAdapter();
-            View listItemView = listView.getChildAt(i);
-            int questionResponse = ((SeekBar) listItemView.findViewById(R.id.question_response)).getProgress();
-            responses.put(adapter.getItem(i).getKey(), questionResponse);
+        if (listView != null) {
+            for (int i = 0; i < listView.getChildCount(); i++) {
+                QuestionAdapter adapter = (QuestionAdapter) listView.getAdapter();
+                View listItemView = listView.getChildAt(i);
+                int questionResponse = ((SeekBar) listItemView.findViewById(R.id.question_response)).getProgress();
+                responses.put(adapter.getItem(i).getKey(), questionResponse);
+            }
         }
         response.setResponses(responses);
 
@@ -145,6 +152,7 @@ public class SurveyFormActivity extends AppCompatActivity {
             FirebaseUser user = authRef.getCurrentUser();
 
             DatabaseReference userRef = ref.child(user.getUid());
+            // TODO: try to find existing document in DB and replace it with new one
             userRef.push().setValue(surveys[0]);
             return null;
         }

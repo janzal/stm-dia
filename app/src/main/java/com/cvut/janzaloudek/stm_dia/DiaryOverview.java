@@ -1,6 +1,10 @@
 package com.cvut.janzaloudek.stm_dia;
 
+import android.app.AlarmManager;
+import android.app.PendingIntent;
+import android.content.Context;
 import android.content.Intent;
+import android.location.Geocoder;
 import android.os.Bundle;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -30,6 +34,7 @@ import java.util.Map;
 public class DiaryOverview extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener{
 
+//    private PendingIntent pendingIntent;
     Map<String, SurveyResponse> surveyResponses = new LinkedHashMap<String, SurveyResponse>();
 
     public void showLoginActivity(View view) {
@@ -95,7 +100,22 @@ public class DiaryOverview extends AppCompatActivity
         navigationView.setNavigationItemSelectedListener(this);
 
         loadData();
+//        setNotificationIfAllowed();
     }
+
+//    private void setNotificationIfAllowed() {
+//
+//        AlarmManager alarmManager = (AlarmManager) getSystemService(Context.ALARM_SERVICE);
+//
+//        Intent notificationIntent = new Intent("android.media.action.DISPLAY_NOTIFICATION");
+//        notificationIntent.addCategory("android.intent.category.DEFAULT");
+//
+//        PendingIntent broadcast = PendingIntent.getBroadcast(this, 100, notificationIntent, PendingIntent.FLAG_UPDATE_CURRENT);
+//
+//        Calendar cal = Calendar.getInstance();
+//        cal.add(Calendar.SECOND, 15);
+//        alarmManager.setExact(AlarmManager.RTC_WAKEUP, cal.getTimeInMillis(), broadcast);
+//    }
 
     private void loadData() {
         DatabaseReference ref = FirebaseDatabase.getInstance().getReferenceFromUrl(Config.FIREBASE_RESPONSES_URL);
@@ -114,15 +134,19 @@ public class DiaryOverview extends AppCompatActivity
                 listView.setAdapter(adapter);
 
                 listView.setOnItemClickListener((AdapterView<?> adapterView, View view, int i, long l) -> {
-                    //                Intent intent = new Intent(DiaryOverview.this, SurveyDetailActivity.class);
-//                startActivity(intent);
                     Intent intent = new Intent(DiaryOverview.this, SurveyDetailActivity.class);
                     // Send id of current record for detail information
-                    // TODO: change record_id by real id of chosen record
-                    int record_id = 1;
                     Bundle b = new Bundle();
-                    b.putInt("rec_id", record_id); //Your id
-                    intent.putExtras(b); //Put your id to your next Intent
+                    int count = 0;
+                    for (String key : surveyResponses.keySet()) {
+                        if (count == i) {
+                            b.putSerializable("rec",surveyResponses.get(key));
+                            break;
+                        }
+                        count++;
+                    }
+
+                    intent.putExtras(b); //Put your response to display
                     startActivity(intent);
                 });
             }
@@ -156,26 +180,12 @@ public class DiaryOverview extends AppCompatActivity
         // Handle action bar item clicks here. The action bar will
         // automatically handle clicks on the Home/Up button, so long
         // as you specify a parent activity in AndroidManifest.xml.
-//        int id = item.getItemId();
-//
-//        //noinspection SimplifiableIfStatement
-//        if (id == R.id.action_settings) {
-//            return true;
-//        }
-//
-//        return super.onOptionsItemSelected(item);
-
         switch (item.getItemId()) {
             case R.id.action_settings:
                 // User chose the "Settings" item, show the app settings UI...
                 Intent intent = new Intent(this, SettingsActivity.class);
                 startActivity(intent);
                 return true;
-
-//            case R.id.action_favorite:
-//                // User chose the "Favorite" action, mark the current item
-//                // as a favorite...
-//                return true;
 
             default:
                 // If we got here, the user's action was not recognized.
